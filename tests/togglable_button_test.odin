@@ -21,10 +21,10 @@ main :: proc(){
 		defer rl.EndDrawing()
 		rl.ClearBackground(rl.RAYWHITE)
 
-        // Togglable Button
-		/*
+        /*
 			NOTE!
 			Currently i havent found a way to make the button to stay as one color when u toggle it
+			without using a timer
 		*/
         lib.draw_togglable_button(togglable_button) 
 		if lib.togglable_button_isPressed(togglable_button, "togglable: hallo") == true{

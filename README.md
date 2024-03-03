@@ -18,3 +18,6 @@ If you are planning to do so please let it be your own source code which is not 
 - Odin Compiler (minimum version req. := **version dev-2024-02-nightly:539cec74** or u can just use latest doesn't matter actually)
 - Visual Studio SDK (Im not sure actually but check the Official Compiler website this is needed if your using this language)
 - Good Text Editor (Very Important Otherwise its not fun at all when u code in a language like this)
+
+# DISCLAIMER
+- Source code that is written in this repo might break at Version 1.0 release as this compiler is still in development

@@ -22,7 +22,6 @@ main :: proc(){
 		defer rl.EndDrawing()
 		rl.ClearBackground(rl.RAYWHITE)
 		
-		//button with image
 		lib.draw_image_button(image_button)
 		lib.image_button_isPressed(image_button, "image: hallo")
 	}

@@ -19,7 +19,6 @@ main :: proc(){
 		defer rl.EndDrawing()
 		rl.ClearBackground(rl.RAYWHITE)
 		
-		// text button
 		lib.draw_text_button(text_button)
 		lib.text_button_isPressed(text_button, "text: hallo")
 	}

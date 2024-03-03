@@ -181,3 +181,10 @@ togglable_text_button_isPressed :: proc(b: Text_Button_Togglable, message: strin
     }
 	return state
 }
+
+
+/*
+================================================
+				RADIO BUTTON
+================================================
+*/

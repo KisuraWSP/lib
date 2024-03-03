@@ -18,7 +18,6 @@ main :: proc(){
 		defer rl.EndDrawing()
 		rl.ClearBackground(rl.RAYWHITE)
 		
-		// normal button
 		lib.draw_button(button)	
 		lib.button_isPressed(button, "hallo")
 	}
