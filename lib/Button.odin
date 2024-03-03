@@ -5,7 +5,7 @@ import "core:fmt"
 
 /*
 ================================================
-					BUTTON
+				REGULAR	BUTTON
 ================================================
 Types
 	Button {rect : rl.Rectangle, color : rl.Color, outline_color : rl.Color, isClicked : bool}
@@ -15,10 +15,10 @@ Procedures
 	button_isPressed :: proc(b : Button, message : string) -> bool
 */
 Button :: struct{
-	rect : rl.Rectangle,
-	color : rl.Color,
-	outline_color : rl.Color,
-	isClicked : bool,
+	rect: 			rl.Rectangle,
+	color: 			rl.Color,
+	outline_color: 	rl.Color,
+	isClicked: 		bool,
 }
 
 draw_button :: proc(b : Button){
@@ -48,15 +48,15 @@ Procedures
 	image_button_isPressed :: proc(b : Image_Button, message : string) -> bool
 */
 Image_Button :: struct{
-	texture : rl.Texture2D,
-	rect : rl.Rectangle,
-	color : rl.Color,
-	tint : rl.Color,
-	outline_color : rl.Color,
-	pos : [2]f32,
-	rotation_degree : f32,
-	scale : f32,
-	isClicked : bool,	
+	texture: 			rl.Texture2D,
+	rect: 				rl.Rectangle,
+	color: 				rl.Color,
+	tint: 				rl.Color,
+	outline_color: 		rl.Color,
+	pos: 				[2]f32,
+	rotation_degree:	f32,
+	scale: 				f32,
+	isClicked: 			bool,	
 }
 
 draw_image_button :: proc(b : Image_Button){
@@ -87,14 +87,14 @@ Procedures
 
 */
 Text_Button :: struct{
-	text: cstring,
-	rect : rl.Rectangle,
-	color : rl.Color,
-	outline_color : rl.Color,
-	text_color : rl.Color,
-	pos : [2]i32,
-	font_size : i32, 
-	isClicked : bool,	
+	text: 			cstring,
+	rect: 			rl.Rectangle,
+	color: 			rl.Color,
+	outline_color: 	rl.Color,
+	text_color: 	rl.Color,
+	pos: 			[2]i32,
+	font_size: 		i32, 
+	isClicked: 		bool,	
 }
 
 draw_text_button :: proc(b : Text_Button){
@@ -109,4 +109,75 @@ text_button_isPressed :: proc(b : Text_Button, message : string) -> bool{
 		return !b.isClicked
 	}
 	return b.isClicked	
+}
+
+
+/*
+================================================
+				TOGGLABLE BUTTON
+================================================
+Types 
+    Togglable_Button {rect : rl.Rectangle, color : rl.Color, outline_color : rl.Color, isClicked : bool}
+
+Procedures
+	draw_togglable_button :: proc(b : Text_Button) ---
+	togglable_button_isPressed :: proc(b: Button_Togglable, message: string) -> bool
+*/
+Button_Togglable :: struct {
+    rect: 			rl.Rectangle,
+    color: 			rl.Color,
+    outline_color: 	rl.Color,
+    isClicked: 		bool,
+}
+
+draw_togglable_button :: proc(b: Button_Togglable){
+    rl.DrawRectangleRec(b.rect, b.color)
+    rl.DrawRectangleLines(cast(i32)b.rect.x, cast(i32)b.rect.y, cast(i32)b.rect.width, cast(i32)b.rect.height, b.outline_color)
+}
+
+togglable_button_isPressed :: proc(b: Button_Togglable, message: string) -> bool{
+	state : bool = b.isClicked
+	if rl.CheckCollisionPointRec(rl.GetMousePosition(), b.rect) && rl.IsMouseButtonPressed(.LEFT) {
+        fmt.println(message)  
+		state = !b.isClicked
+    }
+	return state
+}
+
+
+/*
+================================================
+			 TOGGLABLE TEXT BUTTON
+================================================
+Types 
+    Togglable_Text_Button {rect : rl.Rectangle, color : rl.Color, outline_color : rl.Color, isClicked : bool}
+
+Procedures
+	draw_togglable_text_button :: proc(b : Text_Button) ---
+	togglable__text_button_isPressed :: proc(b: Button_Togglable, message: string) -> bool
+*/
+Text_Button_Togglable :: struct {
+	text: 			cstring,
+    rect: 			rl.Rectangle,
+    color: 			rl.Color,
+    outline_color:  rl.Color,
+	text_color: 	rl.Color,
+	pos: 			[2]i32,
+	font_size: 		i32, 
+    isClicked: 		bool,
+}
+
+draw_togglable_text_button :: proc(b: Text_Button_Togglable){
+	rl.DrawRectangleRec(b.rect, b.color)
+	rl.DrawRectangleLines(cast(i32)b.rect.x, cast(i32)b.rect.y, cast(i32)b.rect.width, cast(i32)b.rect.height, b.outline_color)
+	rl.DrawText(b.text, b.pos.x, b.pos.y, b.font_size, b.text_color)
+}
+
+togglable_text_button_isPressed :: proc(b: Text_Button_Togglable, message: string) -> bool{
+	state : bool = b.isClicked
+	if rl.CheckCollisionPointRec(rl.GetMousePosition(), b.rect) && rl.IsMouseButtonPressed(.LEFT) {
+        fmt.println(message)  
+		state = !b.isClicked
+    }
+	return state
 }
